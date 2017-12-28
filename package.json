@@ -1,0 +1,30 @@
+{
+  "name": "async-iterator-hof",
+  "version": "1.0.0",
+  "description": "Implements the iterator-hof spec for AsyncIterators",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RangerMauve/async-iterator-hof.git"
+  },
+  "keywords": [
+    "async",
+    "iterator",
+    "generator",
+    "operators",
+    "promise",
+    "channel"
+  ],
+  "author": "rangermauve",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RangerMauve/async-iterator-hof/issues"
+  },
+  "homepage": "https://github.com/RangerMauve/async-iterator-hof#readme",
+  "dependencies": {
+    "promise-channel": "^2.0.1"
+  }
+}
