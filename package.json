@@ -26,5 +26,10 @@
   "homepage": "https://github.com/RangerMauve/async-iterator-hof#readme",
   "dependencies": {
     "promise-channel": "^2.0.1"
+  },
+  "devDependencies": {
+    "tape-async": "^2.3.0",
+    "ts-node": "^4.1.0",
+    "typescript": "^2.6.2"
   }
 }
