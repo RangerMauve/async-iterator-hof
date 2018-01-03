@@ -24,13 +24,54 @@ test("AsyncIterator.constructor (from AsyncIterator)", async function (t) {
 
 });
 
+test("AsyncIterator.forEach sync function", async function(t){
+	t.plan(4);
+	const iterator = new AsyncIterator<number>(
+		fromArray([1,2,3,4])
+	);
 
-test.skip("Should be able to iterate via forEach with a sync function");
-test.skip("Should be able to iterate via forEach with an async function");
-test.skip("Should be able to map with a sync function");
-test.skip("Should be able to map with an async function");
-test.skip("Should be able to filter with sync function");
-test.skip("Should be able to filter")
+	await iterator.forEach((value, index) => t.equal(value, index + 1, "Got proper value at index " + index));
+});
+test("AsyncIterator.forEach async function", async function (t) {
+	t.plan(4);
+	const iterator = new AsyncIterator<number>(
+		fromArray([1, 2, 3, 4])
+	);
+
+	await iterator.forEach( async (value, index) => t.equal(value, index + 1, "Got proper value at index " + index));
+});
+test.skip("AsyncIterator.map sync function");
+test.skip("AsyncIterator.map async function");
+test.skip("AsyncIterator.filter sync function");
+test.skip("AsyncIterator.filter async function");
+
+test.skip("AsyncIterator.every sync function");
+test.skip("AsyncIterator.every async function");
+test.skip("AsyncIterator.some sync function");
+test.skip("AsyncIterator.some async function");
+test.skip("AsyncIterator.includes sync function");
+test.skip("AsyncIterator.includes async function");
+
+test.skip("AsyncIterator.find sync function");
+test.skip("AsyncIterator.find async function");
+test.skip("AsyncIterator.findIndex sync function");
+test.skip("AsyncIterator.findIndex async function");
+test.skip("AsyncIterator.indexOf");
+
+test.skip("AsyncIterator.reduce sync function");
+test.skip("AsyncIterator.reduce async function");
+test.skip("AsyncIterator.scan sync function");
+test.skip("AsyncIterator.scan async function");
+
+test.skip("AsyncIterator.flatten sync iterators");
+test.skip("AsyncIterator.flatten async iterators");
+test.skip("AsyncIterator.concat sync iterator");
+test.skip("AsyncIterator.concat async iterator");
+test.skip("AsyncIterator.concat sync iterators");
+test.skip("AsyncIterator.concat async iterators");
+test.skip("AsyncIterator.join default separator");
+test.skip("AsyncIterator.join custom separator");
+
 
 async function toArray<T>(source: AsyncIterable<T>) {
 	const result = [];
