@@ -6,6 +6,23 @@
 export default class AsyncIteraterHof<T> implements AsyncIterable<T> {
 	private source: AsyncIterable<T>
 
+	static from<T>(source : T|Promise<T>|Iterable<T>|AsyncIterable<T>) : AsyncIteraterHof<T> {
+		async function* from() : AsyncIterable<T> {
+			if(source) {
+				if(source[Symbol.iterator] || source[Symbol.asyncIterator])
+					yield* source;
+				// @ts-ignore Cannot be 
+				else yield source;
+			} else {
+				// Source must be T because iterables can't be falsy
+				// @ts-ignore
+				yield source;
+			}
+		}
+
+		return new AsyncIteraterHof<T>(from());
+	}
+
 	constructor(source: AsyncIterable<T>) {
 		this.source = source;
 	}
@@ -14,7 +31,7 @@ export default class AsyncIteraterHof<T> implements AsyncIterable<T> {
 	 * Concatonates the current AsyncIterable with others into one big AsyncIterable
 	 * @param args List of AsyncIterables to add concatenate with this one
 	 */
-	concat(...args: AsyncIterable<T>[]) : AsyncIterable<T> {
+	concat(...args: AsyncIterable<T>[]): AsyncIteraterHof<T> {
 		async function* operation(source : AsyncIterable<T>) : AsyncIterableIterator<T> {
 			yield* source;
 			for(let list of args) {
@@ -254,7 +271,7 @@ export default class AsyncIteraterHof<T> implements AsyncIterable<T> {
 	 * @param other the AsyncIterable to merge with
 	 */
 	zip<R>(other: AsyncIterable<R>): AsyncIteraterHof<[T, R]> {
-		async function* zip<R>(source: AsyncIterable<T>) : AsyncIterable<[T, R]> {
+		async function* zip<RR>(source: AsyncIterable<T>) : AsyncIterable<[T, RR]> {
 			const iterator1 = source[Symbol.asyncIterator]();
 			const iterator2 = other[Symbol.asyncIterator]();
 
@@ -278,7 +295,7 @@ export default class AsyncIteraterHof<T> implements AsyncIterable<T> {
 			}
 		}
 
-		return new AsyncIteraterHof<[T, R]>(zip(this.source));
+		return new AsyncIteraterHof<[T, R]>(zip<R>(this.source));
 	}
 
 	/**

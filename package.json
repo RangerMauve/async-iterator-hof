@@ -4,7 +4,8 @@
   "description": "Implements the iterator-hof spec for AsyncIterators",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "document": "typedoc --theme markdown --mode file ./index.ts --out ./ -m module"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,8 @@
   "devDependencies": {
     "tape-async": "^2.3.0",
     "ts-node": "^4.1.0",
+    "typedoc": "github:Gerrit0/typedoc",
+    "typedoc-plugin-markdown": "^1.0.12",
     "typescript": "^2.6.2"
   }
 }

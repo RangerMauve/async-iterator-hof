@@ -1,20 +1,9 @@
-
-
-
-
-# async-iterator-hof
-Implements the iterator-hof spec for AsyncIterators.
-
-Take exist AsyncIterable sources (like async generators, or )
-
-## Example
-
-```javascript
 if (!Symbol.asyncIterator)
 	// @ts-ignore
 	Symbol.asyncIterator = Symbol.for("asyncIterator");
 
 import AsyncIterator from "./";
+
 
 async function* makeSequence(n) {
 	let i = n;
@@ -36,7 +25,3 @@ const combined = evens.concat(odds);
 combined.forEach((n) => console.log(n));
 
 // Will output 8 6 4 2 0 9 7 5 3 1
-```
-
-
-## [API](classes/asynciteraterhof.md)
